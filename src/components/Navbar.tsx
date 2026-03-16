@@ -1,9 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/hash-hub-logo.png";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
 
   const navItems = [
     { label: "Explore", path: "/" },
@@ -38,16 +41,29 @@ const Navbar = () => {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <Link to="/login">
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              Login
+          {isAuthenticated ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground"
+              onClick={() => { logout(); navigate("/login"); }}
+            >
+              Logout
             </Button>
-          </Link>
-          <Link to="/signup">
-            <Button size="sm">
-              Sign Up
-            </Button>
-          </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="ghost" size="sm" className="text-muted-foreground">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button size="sm">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

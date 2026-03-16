@@ -8,6 +8,7 @@ import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import logo from "@/assets/hash-hub-logo.png";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -17,6 +18,7 @@ const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +41,7 @@ const Signup = () => {
 
       if (!response.ok) throw new Error(data.error || data.message || "Error signing up");
 
-      localStorage.setItem("auth_token", data.token);
+      login(data.token);
       toast.success("Account created successfully!");
       navigate("/");
     } catch (error) {
