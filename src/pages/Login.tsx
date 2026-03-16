@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,36 +14,34 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: Call your backend auth endpoint
 
     try {
-      
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({ email, password })
       });
 
       const data = await response.json();
-      console.log("Data: ", data);
-      
 
-      if(!response.ok) throw new Error("Login failed. Please try again.")
+      if (!response.ok) throw new Error(data.error || data.message || "Login failed. Please try again.");
 
-
+      localStorage.setItem("auth_token", data.token);
+      toast.success("Logged in successfully!");
+      navigate("/");
     } catch (error) {
-      toast.error("error");      
+      const message = error instanceof Error ? error.message : "Login failed. Please try again.";
+      toast.error(message);
+    } finally {
+      setIsLoading(false);
     }
-
-
-    console.log("Login:", { email, password });
-    setTimeout(() => setIsLoading(false), 1000);
   };
 
   return (
