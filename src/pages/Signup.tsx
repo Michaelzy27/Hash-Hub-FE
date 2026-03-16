@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -16,41 +16,38 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      toast.error("Passwords do not match");
       return;
     }
     setIsLoading(true);
-    // TODO: Call your backend auth endpoint
 
     try {
       const response = await fetch(`${API_BASE_URL}/auth/signup`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email, password })
-    });
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ fullName, email, password })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if(!response.ok) throw new Error(data.error || data.message || "Error signing up");
+      if (!response.ok) throw new Error(data.error || data.message || "Error signing up");
 
-    setIsLoading(false);
-
+      localStorage.setItem("auth_token", data.token);
+      toast.success("Account created successfully!");
+      navigate("/");
     } catch (error) {
+      const message = error instanceof Error ? error.message : "Signup failed. Please try again.";
+      toast.error(message);
+    } finally {
       setIsLoading(false);
-      console.log("Signup error: ", error);
-      toast.error("Failed to login");
     }
-
-
-
-
-    console.log("Signup:", { fullName, email, password });
   };
 
   return (
