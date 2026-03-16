@@ -8,6 +8,7 @@ import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import logo from "@/assets/hash-hub-logo.png";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
