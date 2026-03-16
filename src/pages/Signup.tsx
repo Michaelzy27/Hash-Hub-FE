@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { API_BASE_URL } from "@/config/api";
 import logo from "@/assets/hash-hub-logo.png";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [fullName, setFullName] = useState("");
@@ -23,8 +25,32 @@ const Signup = () => {
     }
     setIsLoading(true);
     // TODO: Call your backend auth endpoint
+
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if(!response.ok) throw new Error(data.error || data.message || "Error signing up");
+
+    setIsLoading(false);
+
+    } catch (error) {
+      setIsLoading(false);
+      console.log("Signup error: ", error);
+      toast.error("Failed to login");
+    }
+
+
+
+
     console.log("Signup:", { fullName, email, password });
-    setTimeout(() => setIsLoading(false), 1000);
   };
 
   return (

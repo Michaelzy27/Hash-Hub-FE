@@ -5,7 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+import { API_BASE_URL } from "@/config/api";
 import logo from "@/assets/hash-hub-logo.png";
+import { toast } from "sonner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +19,29 @@ const Login = () => {
     e.preventDefault();
     setIsLoading(true);
     // TODO: Call your backend auth endpoint
+
+    try {
+      
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email, password})
+      });
+
+      const data = await response.json();
+      console.log("Data: ", data);
+      
+
+      if(!response.ok) throw new Error("Login failed. Please try again.")
+
+
+    } catch (error) {
+      toast.error("error");      
+    }
+
+
     console.log("Login:", { email, password });
     setTimeout(() => setIsLoading(false), 1000);
   };
