@@ -35,7 +35,7 @@ const Login = () => {
 
       if (!response.ok) throw new Error(data.error || data.message || "Login failed. Please try again.");
 
-      localStorage.setItem("auth_token", data.token);
+      login(data.token);
       toast.success("Logged in successfully!");
       navigate("/");
     } catch (error) {

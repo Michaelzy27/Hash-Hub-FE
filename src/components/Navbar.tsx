@@ -41,16 +41,29 @@ const Navbar = () => {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <Link to="/login">
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              Login
+          {isAuthenticated ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground"
+              onClick={() => { logout(); navigate("/login"); }}
+            >
+              Logout
             </Button>
-          </Link>
-          <Link to="/signup">
-            <Button size="sm">
-              Sign Up
-            </Button>
-          </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="ghost" size="sm" className="text-muted-foreground">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button size="sm">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </header>

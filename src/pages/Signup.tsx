@@ -41,7 +41,7 @@ const Signup = () => {
 
       if (!response.ok) throw new Error(data.error || data.message || "Error signing up");
 
-      localStorage.setItem("auth_token", data.token);
+      login(data.token);
       toast.success("Account created successfully!");
       navigate("/");
     } catch (error) {
