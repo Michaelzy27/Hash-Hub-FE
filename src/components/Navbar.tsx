@@ -42,14 +42,23 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-3">
           {isAuthenticated ? (
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-muted-foreground"
-              onClick={() => { logout(); navigate("/login"); }}
-            >
-              Logout
-            </Button>
+            <>
+              {!isProfileComplete && (
+                <Link to="/complete-profile">
+                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
+                    Complete Your Profile
+                  </Button>
+                </Link>
+              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-muted-foreground"
+                onClick={() => { logout(); navigate("/login"); }}
+              >
+                Logout
+              </Button>
+            </>
           ) : (
             <>
               <Link to="/login">
