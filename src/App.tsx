@@ -10,6 +10,7 @@ import Signup from "./pages/Signup.tsx";
 import ForgotPassword from "./pages/ForgotPassword.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
+import Swap from "./pages/Swap.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
+          <Route path="/swap" element={<Swap />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>
