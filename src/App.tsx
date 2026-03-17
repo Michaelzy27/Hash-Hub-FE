@@ -27,6 +27,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>

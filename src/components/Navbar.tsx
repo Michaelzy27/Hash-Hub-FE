@@ -6,7 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, isProfileComplete, logout } = useAuth();
 
   const navItems = [
     { label: "Explore", path: "/" },
