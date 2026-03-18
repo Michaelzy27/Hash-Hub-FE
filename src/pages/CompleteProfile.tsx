@@ -49,6 +49,7 @@ const CompleteProfile = () => {
   const [referralCode, setReferralCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const addSkill = (skill: string) => {
     const trimmed = skill.trim();
