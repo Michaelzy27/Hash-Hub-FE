@@ -66,6 +66,7 @@ const CompleteProfile = () => {
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setAvatarFile(file);
       const reader = new FileReader();
       reader.onloadend = () => setAvatarPreview(reader.result as string);
       reader.readAsDataURL(file);
