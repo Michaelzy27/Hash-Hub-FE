@@ -11,7 +11,6 @@ import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 
 const Signup = () => {
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
