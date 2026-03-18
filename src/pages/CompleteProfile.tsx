@@ -49,6 +49,7 @@ const CompleteProfile = () => {
   const [referralCode, setReferralCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const addSkill = (skill: string) => {
     const trimmed = skill.trim();
@@ -65,6 +66,7 @@ const CompleteProfile = () => {
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setAvatarFile(file);
       const reader = new FileReader();
       reader.onloadend = () => setAvatarPreview(reader.result as string);
       reader.readAsDataURL(file);
@@ -101,21 +103,22 @@ const CompleteProfile = () => {
 
     setIsLoading(true);
     try {
+      const formData = new FormData();
+      formData.append("firstName", firstName.trim());
+      formData.append("lastName", lastName.trim());
+      formData.append("username", username.trim());
+      formData.append("location", location);
+      formData.append("skills", JSON.stringify(skills));
+      formData.append("twitterUsername", twitterUsername.trim());
+      if (referralCode.trim()) formData.append("referralCode", referralCode.trim());
+      if (avatarFile) formData.append("avatar", avatarFile);
+
       const res = await fetch(`${API_BASE_URL}/auth/complete-profile`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({
-          firstName: firstName.trim(),
-          lastName: lastName.trim(),
-          username: username.trim(),
-          location,
-          skills,
-          twitterUsername: twitterUsername.trim(),
-          referralCode: referralCode.trim() || undefined,
-        }),
+        body: formData,
       });
 
       const data = await res.json();
