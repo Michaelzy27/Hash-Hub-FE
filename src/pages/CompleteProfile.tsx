@@ -36,7 +36,7 @@ const STEPS = [
 
 const CompleteProfile = () => {
   const navigate = useNavigate();
-  const { token, setProfileComplete } = useAuth();
+  const { token, setProfileComplete, setUserProfile, userProfile } = useAuth();
   const [step, setStep] = useState(0);
 
   const [firstName, setFirstName] = useState("");

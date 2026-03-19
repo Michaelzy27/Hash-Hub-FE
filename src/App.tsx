@@ -31,6 +31,7 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/swap" element={<Swap />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>
