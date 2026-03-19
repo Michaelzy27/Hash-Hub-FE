@@ -11,6 +11,7 @@ import ForgotPassword from "./pages/ForgotPassword.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
 import Swap from "./pages/Swap.tsx";
+import Profile from "./pages/Profile.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const queryClient = new QueryClient();
