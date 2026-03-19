@@ -125,6 +125,16 @@ const CompleteProfile = () => {
       if (!res.ok) throw new Error(data.message || "Failed to update profile");
 
       setProfileComplete(true);
+      setUserProfile({
+        ...userProfile,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        username: username.trim(),
+        location,
+        skills,
+        twitterUsername: twitterUsername.trim(),
+        avatarUrl: data.avatarUrl || avatarPreview || undefined,
+      });
       toast.success("Profile completed! You can now register for bounties.");
       navigate("/");
     } catch (err: any) {
