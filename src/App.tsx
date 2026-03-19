@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
 import Swap from "./pages/Swap.tsx";
 import Profile from "./pages/Profile.tsx";
+import BecomeSponsor from "./pages/BecomeSponsor.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/swap" element={<Swap />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/become-sponsor" element={<BecomeSponsor />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>
