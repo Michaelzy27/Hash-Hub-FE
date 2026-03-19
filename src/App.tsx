@@ -33,6 +33,7 @@ const App = () => (
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/swap" element={<Swap />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/become-sponsor" element={<BecomeSponsor />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>
