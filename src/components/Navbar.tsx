@@ -2,11 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/hash-hub-logo.png";
 import { useAuth } from "@/contexts/AuthContext";
+import { User } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, isProfileComplete, logout } = useAuth();
+  const { isAuthenticated, isProfileComplete, userProfile, logout } = useAuth();
 
   const navItems = [
     { label: "Explore", path: "/" },
@@ -14,6 +15,10 @@ const Navbar = () => {
     { label: "My Work", path: "/my-work" },
     { label: "Swap", path: "/swap" },
   ];
+
+  const initials = userProfile
+    ? `${(userProfile.firstName || "?")[0]}${(userProfile.lastName || "?")[0]}`.toUpperCase()
+    : null;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
@@ -51,6 +56,29 @@ const Navbar = () => {
                   </Button>
                 </Link>
               )}
+              <button
+                onClick={() => navigate("/profile")}
+                className="flex items-center gap-2 rounded-full transition-colors hover:opacity-80"
+              >
+                {userProfile?.avatarUrl ? (
+                  <img
+                    src={userProfile.avatarUrl}
+                    alt="Profile"
+                    className="h-8 w-8 rounded-full object-cover border border-border"
+                  />
+                ) : initials ? (
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
+                    {initials}
+                  </div>
+                ) : (
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary border border-border">
+                    <User className="h-4 w-4 text-muted-foreground" />
+                  </div>
+                )}
+                {!isProfileComplete && userProfile?.email && (
+                  <span className="hidden md:inline text-sm text-muted-foreground">{userProfile.email}</span>
+                )}
+              </button>
               <Button
                 variant="ghost"
                 size="sm"

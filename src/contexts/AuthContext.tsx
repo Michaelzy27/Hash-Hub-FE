@@ -1,12 +1,25 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
+export interface UserProfile {
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+  location?: string;
+  skills?: string[];
+  twitterUsername?: string;
+  avatarUrl?: string;
+}
+
 interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   isProfileComplete: boolean;
-  login: (token: string) => void;
+  userProfile: UserProfile | null;
+  login: (token: string, profile?: UserProfile) => void;
   logout: () => void;
   setProfileComplete: (complete: boolean) => void;
+  setUserProfile: (profile: UserProfile) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -18,17 +31,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isProfileComplete, setIsProfileComplete] = useState<boolean>(() =>
     localStorage.getItem("profile_complete") === "true"
   );
+  const [userProfile, setUserProfileState] = useState<UserProfile | null>(() => {
+    const stored = localStorage.getItem("user_profile");
+    return stored ? JSON.parse(stored) : null;
+  });
 
-  const login = (newToken: string) => {
+  const login = (newToken: string, profile?: UserProfile) => {
     localStorage.setItem("auth_token", newToken);
     setToken(newToken);
+    if (profile) {
+      localStorage.setItem("user_profile", JSON.stringify(profile));
+      setUserProfileState(profile);
+    }
   };
 
   const logout = () => {
     localStorage.removeItem("auth_token");
     localStorage.removeItem("profile_complete");
+    localStorage.removeItem("user_profile");
     setToken(null);
     setIsProfileComplete(false);
+    setUserProfileState(null);
   };
 
   const setProfileComplete = (complete: boolean) => {
@@ -36,9 +59,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsProfileComplete(complete);
   };
 
+  const setUserProfile = (profile: UserProfile) => {
+    localStorage.setItem("user_profile", JSON.stringify(profile));
+    setUserProfileState(profile);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated: !!token, isProfileComplete, login, logout, setProfileComplete }}
+      value={{ token, isAuthenticated: !!token, isProfileComplete, userProfile, login, logout, setProfileComplete, setUserProfile }}
     >
       {children}
     </AuthContext.Provider>
