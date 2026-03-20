@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft } from "lucide-react";
+import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft, Wallet, Copy } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
