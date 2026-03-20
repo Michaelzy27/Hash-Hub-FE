@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, MessageSquare, Shield, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
+import BountySubmitDialog from "@/components/BountySubmitDialog";
 import { MOCK_BOUNTIES } from "@/data/bounties";
 
 const getTimeRemaining = (dueDate: string) => {
@@ -20,6 +22,7 @@ const getProjectInitials = (name: string) => {
 
 const BountyDetail = () => {
   const { id } = useParams();
+  const [submitOpen, setSubmitOpen] = useState(false);
   const bounty = MOCK_BOUNTIES.find((b) => b.id === id);
 
   if (!bounty) {
@@ -131,13 +134,19 @@ const BountyDetail = () => {
             <div className="space-y-4">
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-4">Apply for this Bounty</h3>
-                <Button className="w-full" size="lg">
+                <Button className="w-full" size="lg" onClick={() => setSubmitOpen(true)}>
                   Submit Application
                 </Button>
                 <p className="text-xs text-muted-foreground mt-3 text-center">
                   Sign up or log in to apply
                 </p>
               </div>
+
+              <BountySubmitDialog
+                open={submitOpen}
+                onOpenChange={setSubmitOpen}
+                bountyId={bounty.id}
+              />
 
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-3">About {bounty.project}</h3>
