@@ -63,26 +63,12 @@ const Navbar = () => {
               )}
               <button
                 onClick={() => navigate("/profile")}
-                className="flex items-center gap-2 rounded-full transition-colors hover:opacity-80"
+                className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
               >
-                {userProfile?.avatarUrl ? (
-                  <img
-                    src={userProfile.avatarUrl}
-                    alt="Profile"
-                    className="h-8 w-8 rounded-full object-cover border border-border"
-                  />
-                ) : initials ? (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary">
-                    {initials}
-                  </div>
-                ) : (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary border border-border">
-                    <User className="h-4 w-4 text-muted-foreground" />
-                  </div>
-                )}
-                {!isProfileComplete && userProfile?.email && (
-                  <span className="hidden md:inline text-sm text-muted-foreground">{userProfile.email}</span>
-                )}
+                <Wallet className="h-4 w-4 text-primary" />
+                <span className="text-sm font-mono text-foreground">
+                  {truncatedWallet || userProfile?.email || "Profile"}
+                </span>
               </button>
               <Button
                 variant="ghost"
