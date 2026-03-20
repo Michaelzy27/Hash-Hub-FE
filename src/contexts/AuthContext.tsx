@@ -16,11 +16,11 @@ interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   isProfileComplete: boolean;
-  userProfile: UserProfile | null;
-  login: (token: string, profile?: UserProfile) => void;
+  userProfile: User | null;
+  login: (token: string, profile?: User) => void;
   logout: () => void;
   setProfileComplete: (complete: boolean) => void;
-  setUserProfile: (profile: UserProfile) => void;
+  setUserProfile: (profile: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
