@@ -121,7 +121,8 @@ const CompleteProfile = () => {
         body: formData,
       });
 
-      const data = await res.json();
+      const  { data } = await res.json();
+      const user = data.user;
       if (!res.ok) throw new Error(data.message || "Failed to update profile");
 
       setProfileComplete(true);
@@ -133,7 +134,8 @@ const CompleteProfile = () => {
         location,
         skills,
         twitterUsername: twitterUsername.trim(),
-        avatarUrl: data.avatarUrl || avatarPreview || undefined,
+        avatarUrl: user.avatarUrl || avatarPreview || undefined,
+        walletAddress: user.walletAddress
       });
       toast.success("Profile completed! You can now register for bounties.");
       navigate("/");
