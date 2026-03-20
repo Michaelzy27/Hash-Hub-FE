@@ -22,6 +22,7 @@ const getProjectInitials = (name: string) => {
 
 const BountyDetail = () => {
   const { id } = useParams();
+  const [submitOpen, setSubmitOpen] = useState(false);
   const bounty = MOCK_BOUNTIES.find((b) => b.id === id);
 
   if (!bounty) {
