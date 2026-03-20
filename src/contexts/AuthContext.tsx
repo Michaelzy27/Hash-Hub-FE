@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isProfileComplete, setIsProfileComplete] = useState<boolean>(() =>
     localStorage.getItem("profile_complete") === "true"
   );
-  const [userProfile, setUserProfileState] = useState<UserProfile | null>(() => {
+  const [userProfile, setUserProfileState] = useState<User | null>(() => {
     const stored = localStorage.getItem("user_profile");
     return stored ? JSON.parse(stored) : null;
   });
