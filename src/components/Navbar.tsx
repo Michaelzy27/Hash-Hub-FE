@@ -16,8 +16,8 @@ const Navbar = () => {
     { label: "Swap", path: "/swap" },
   ];
 
-  const initials = userProfile
-    ? `${(userProfile.firstName || "?")[0]}${(userProfile.lastName || "?")[0]}`.toUpperCase()
+  const truncatedWallet = userProfile?.walletAddress
+    ? `${userProfile.walletAddress.slice(0, 6)}...${userProfile.walletAddress.slice(-4)}`
     : null;
 
   return (
