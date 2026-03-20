@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/hash-hub-logo.png";
 import { useAuth } from "@/contexts/AuthContext";
-import { User } from "lucide-react";
+import { Wallet } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
