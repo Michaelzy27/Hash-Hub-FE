@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsProfileComplete(complete);
   };
 
-  const setUserProfile = (profile: UserProfile) => {
+  const setUserProfile = (profile: User) => {
     localStorage.setItem("user_profile", JSON.stringify(profile));
     setUserProfileState(profile);
   };
