@@ -47,6 +47,11 @@ const Navbar = () => {
           </nav>
         </div>
         <div className="flex items-center gap-3">
+          <Link to="/become-sponsor">
+            <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
+              Become a Sponsor
+            </Button>
+          </Link>
           {isAuthenticated ? (
             <>
               {!isProfileComplete && (
