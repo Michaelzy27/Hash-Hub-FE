@@ -134,13 +134,19 @@ const BountyDetail = () => {
             <div className="space-y-4">
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-4">Apply for this Bounty</h3>
-                <Button className="w-full" size="lg">
+                <Button className="w-full" size="lg" onClick={() => setSubmitOpen(true)}>
                   Submit Application
                 </Button>
                 <p className="text-xs text-muted-foreground mt-3 text-center">
                   Sign up or log in to apply
                 </p>
               </div>
+
+              <BountySubmitDialog
+                open={submitOpen}
+                onOpenChange={setSubmitOpen}
+                bountyId={bounty.id}
+              />
 
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-3">About {bounty.project}</h3>
