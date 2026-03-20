@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, MessageSquare, Shield, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
+import BountySubmitDialog from "@/components/BountySubmitDialog";
 import { MOCK_BOUNTIES } from "@/data/bounties";
 
 const getTimeRemaining = (dueDate: string) => {
