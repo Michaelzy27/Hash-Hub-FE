@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
-import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft } from "lucide-react";
+import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft, Wallet, Copy } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
@@ -308,6 +308,32 @@ const Profile = () => {
                     </a>
                   ) : "Not set"}
                 </p>
+              )}
+            </div>
+
+            {/* Wallet Address */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Wallet className="h-4 w-4" /> Wallet Address
+              </div>
+              {userProfile?.walletAddress ? (
+                <div className="flex items-center gap-2">
+                  <code className="rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-sm font-mono text-foreground">
+                    {userProfile.walletAddress}
+                  </code>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigator.clipboard.writeText(userProfile.walletAddress!);
+                      toast.success("Wallet address copied!");
+                    }}
+                    className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+                  >
+                    <Copy className="h-4 w-4" />
+                  </button>
+                </div>
+              ) : (
+                <p className="text-sm text-muted-foreground">No wallet address assigned yet</p>
               )}
             </div>
           </div>
