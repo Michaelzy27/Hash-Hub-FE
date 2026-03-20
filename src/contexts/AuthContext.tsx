@@ -9,6 +9,7 @@ export interface UserProfile {
   skills?: string[];
   twitterUsername?: string;
   avatarUrl?: string;
+  walletAddress?: string;
 }
 
 interface AuthContextType {
