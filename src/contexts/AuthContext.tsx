@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
-export interface UserProfile {
+export interface User {
   email?: string;
   firstName?: string;
   lastName?: string;
@@ -16,11 +16,11 @@ interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   isProfileComplete: boolean;
-  userProfile: UserProfile | null;
-  login: (token: string, profile?: UserProfile) => void;
+  userProfile: User | null;
+  login: (token: string, profile?: User) => void;
   logout: () => void;
   setProfileComplete: (complete: boolean) => void;
-  setUserProfile: (profile: UserProfile) => void;
+  setUserProfile: (profile: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -32,12 +32,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isProfileComplete, setIsProfileComplete] = useState<boolean>(() =>
     localStorage.getItem("profile_complete") === "true"
   );
-  const [userProfile, setUserProfileState] = useState<UserProfile | null>(() => {
+  const [userProfile, setUserProfileState] = useState<User | null>(() => {
     const stored = localStorage.getItem("user_profile");
     return stored ? JSON.parse(stored) : null;
   });
 
-  const login = (newToken: string, profile?: UserProfile) => {
+  const login = (newToken: string, profile?: User) => {
     localStorage.setItem("auth_token", newToken);
     setToken(newToken);
     if (profile) {
@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsProfileComplete(complete);
   };
 
-  const setUserProfile = (profile: UserProfile) => {
+  const setUserProfile = (profile: User) => {
     localStorage.setItem("user_profile", JSON.stringify(profile));
     setUserProfileState(profile);
   };
