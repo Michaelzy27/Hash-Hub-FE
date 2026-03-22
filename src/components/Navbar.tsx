@@ -17,7 +17,7 @@ const Navbar = () => {
     { label: "Explore", path: "/" },
     { label: "Projects", path: "/projects" },
     { label: "My Work", path: "/my-work" },
-    { label: "Swap", path: "/swap" },
+    { label: "DeFi", path: "/defi" },
   ];
 
   const hederaWallet = userProfile?.hederaWalletId;
