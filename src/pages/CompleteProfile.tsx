@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Upload, Plus, X, ChevronRight, ChevronLeft, User, Briefcase, Share2, CheckCircle2 } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
+import { toImageSrc } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import {
   Select,
@@ -134,7 +135,7 @@ const CompleteProfile = () => {
         location,
         skills,
         twitterUsername: twitterUsername.trim(),
-        avatarUrl: user.avatarUrl || avatarPreview || undefined,
+        avatarUrl: user.avatarUrl || undefined,
         hederaWalletId: user.hederaWalletId,
         walletAddress: user.walletAddress
       });

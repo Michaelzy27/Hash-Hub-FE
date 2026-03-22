@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft, Wallet, Copy } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
+import { toImageSrc } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import {
   Select,
@@ -41,7 +42,7 @@ const Profile = () => {
   const [skills, setSkills] = useState<string[]>(userProfile?.skills || []);
   const [twitterUsername, setTwitterUsername] = useState(userProfile?.twitterUsername || "");
   const [skillInput, setSkillInput] = useState("");
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(userProfile?.avatarUrl || null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(toImageSrc(userProfile?.avatarUrl) || null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const addSkill = (skill: string) => {
@@ -73,7 +74,7 @@ const Profile = () => {
     setLocation(userProfile?.location || "");
     setSkills(userProfile?.skills || []);
     setTwitterUsername(userProfile?.twitterUsername || "");
-    setAvatarPreview(userProfile?.avatarUrl || null);
+    setAvatarPreview(toImageSrc(userProfile?.avatarUrl) || null);
     setAvatarFile(null);
     setIsEditing(false);
   };
@@ -112,7 +113,7 @@ const Profile = () => {
         location,
         skills,
         twitterUsername: twitterUsername.trim(),
-        avatarUrl: data.avatarUrl || avatarPreview || userProfile?.avatarUrl,
+        avatarUrl: data.avatarUrl || userProfile?.avatarUrl,
       };
 
       setUserProfile(updatedProfile);
