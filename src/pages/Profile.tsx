@@ -42,7 +42,7 @@ const Profile = () => {
   const [skills, setSkills] = useState<string[]>(userProfile?.skills || []);
   const [twitterUsername, setTwitterUsername] = useState(userProfile?.twitterUsername || "");
   const [skillInput, setSkillInput] = useState("");
-  const [avatarPreview, setAvatarPreview] = useState<string | null>(userProfile?.avatarUrl || null);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(toImageSrc(userProfile?.avatarUrl) || null);
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   const addSkill = (skill: string) => {
