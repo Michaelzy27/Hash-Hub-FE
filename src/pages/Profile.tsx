@@ -113,7 +113,7 @@ const Profile = () => {
         location,
         skills,
         twitterUsername: twitterUsername.trim(),
-        avatarUrl: data.avatarUrl || avatarPreview || userProfile?.avatarUrl,
+        avatarUrl: data.avatarUrl || userProfile?.avatarUrl,
       };
 
       setUserProfile(updatedProfile);

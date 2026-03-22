@@ -135,7 +135,7 @@ const CompleteProfile = () => {
         location,
         skills,
         twitterUsername: twitterUsername.trim(),
-        avatarUrl: user.avatarUrl || avatarPreview || undefined,
+        avatarUrl: user.avatarUrl || undefined,
         hederaWalletId: user.hederaWalletId,
         walletAddress: user.walletAddress
       });
