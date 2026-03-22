@@ -13,6 +13,7 @@ import CompleteProfile from "./pages/CompleteProfile.tsx";
 import DeFi from "./pages/DeFi.tsx";
 import Profile from "./pages/Profile.tsx";
 import BecomeSponsor from "./pages/BecomeSponsor.tsx";
+import SponsorDashboard from "./pages/SponsorDashboard.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const queryClient = new QueryClient();
