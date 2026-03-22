@@ -10,7 +10,7 @@ import Signup from "./pages/Signup.tsx";
 import ForgotPassword from "./pages/ForgotPassword.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
-import Swap from "./pages/Swap.tsx";
+import DeFi from "./pages/DeFi.tsx";
 import Profile from "./pages/Profile.tsx";
 import BecomeSponsor from "./pages/BecomeSponsor.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
@@ -31,7 +31,7 @@ const App = () => (
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
-          <Route path="/swap" element={<Swap />} />
+          <Route path="/defi" element={<DeFi />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/become-sponsor" element={<BecomeSponsor />} />
           <Route path="*" element={<NotFound />} />
