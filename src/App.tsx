@@ -10,7 +10,7 @@ import Signup from "./pages/Signup.tsx";
 import ForgotPassword from "./pages/ForgotPassword.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import CompleteProfile from "./pages/CompleteProfile.tsx";
-import Swap from "./pages/Swap.tsx";
+import DeFi from "./pages/DeFi.tsx";
 import Profile from "./pages/Profile.tsx";
 import BecomeSponsor from "./pages/BecomeSponsor.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
