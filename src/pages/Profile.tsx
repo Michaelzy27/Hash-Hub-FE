@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft, Wallet, Copy } from "lucide-react";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
+import { toImageSrc } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import {
   Select,
