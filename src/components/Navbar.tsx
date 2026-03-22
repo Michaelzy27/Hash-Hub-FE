@@ -20,6 +20,10 @@ const Navbar = () => {
     { label: "Swap", path: "/swap" },
   ];
 
+  const hederaWallet = userProfile?.hederaWalletId;
+  console.log("h a: ", hederaWallet);
+  
+
   const truncatedWallet = userProfile?.walletAddress
     ? `${userProfile.walletAddress.slice(0, 6)}...${userProfile.walletAddress.slice(-4)}`
     : null;
@@ -75,7 +79,7 @@ const Navbar = () => {
               >
                 <Wallet className="h-4 w-4 text-primary" />
                 <span className="text-sm font-mono text-foreground">
-                  {truncatedWallet || userProfile?.email || "Profile"}
+                  {hederaWallet || userProfile?.email || "Profile"}
                 </span>
               </button>
               <Button
@@ -149,7 +153,7 @@ const Navbar = () => {
                 >
                   <Wallet className="h-4 w-4 text-primary" />
                   <span className="text-sm font-mono text-foreground">
-                    {truncatedWallet || userProfile?.email || "Profile"}
+                    {hederaWallet || userProfile?.email || "Profile"}
                   </span>
                 </button>
                 <Button

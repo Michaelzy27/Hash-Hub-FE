@@ -135,6 +135,7 @@ const CompleteProfile = () => {
         skills,
         twitterUsername: twitterUsername.trim(),
         avatarUrl: user.avatarUrl || avatarPreview || undefined,
+        hederaWalletId: user.hederaWalletId,
         walletAddress: user.walletAddress
       });
       toast.success("Profile completed! You can now register for bounties.");

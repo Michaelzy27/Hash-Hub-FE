@@ -316,15 +316,15 @@ const Profile = () => {
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Wallet className="h-4 w-4" /> Wallet Address
               </div>
-              {userProfile?.walletAddress ? (
+              {userProfile?.hederaWalletId ? (
                 <div className="flex items-center gap-2">
                   <code className="rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-sm font-mono text-foreground">
-                    {userProfile.walletAddress}
+                    {userProfile.hederaWalletId}
                   </code>
                   <button
                     type="button"
                     onClick={() => {
-                      navigator.clipboard.writeText(userProfile.walletAddress!);
+                      navigator.clipboard.writeText(userProfile.hederaWalletId!);
                       toast.success("Wallet address copied!");
                     }}
                     className="rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"

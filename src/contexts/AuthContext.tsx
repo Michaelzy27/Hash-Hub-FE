@@ -10,6 +10,7 @@ export interface User {
   skills?: string[];
   twitterUsername?: string;
   avatarUrl?: string;
+  hederaWalletId?: string;
   walletAddress?: string;
 }
 
