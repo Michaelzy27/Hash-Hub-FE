@@ -74,7 +74,7 @@ const Profile = () => {
     setLocation(userProfile?.location || "");
     setSkills(userProfile?.skills || []);
     setTwitterUsername(userProfile?.twitterUsername || "");
-    setAvatarPreview(userProfile?.avatarUrl || null);
+    setAvatarPreview(toImageSrc(userProfile?.avatarUrl) || null);
     setAvatarFile(null);
     setIsEditing(false);
   };
