@@ -13,6 +13,7 @@ import CompleteProfile from "./pages/CompleteProfile.tsx";
 import DeFi from "./pages/DeFi.tsx";
 import Profile from "./pages/Profile.tsx";
 import BecomeSponsor from "./pages/BecomeSponsor.tsx";
+import SponsorDashboard from "./pages/SponsorDashboard.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/defi" element={<DeFi />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/become-sponsor" element={<BecomeSponsor />} />
+          <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>
