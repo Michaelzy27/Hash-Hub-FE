@@ -110,7 +110,7 @@ const BecomeSponsor = () => {
       }
 
       toast({ title: "Sponsor profile created!", description: "Welcome aboard 🎉" });
-      navigate("/");
+      navigate("/sponsor/dashboard");
     } catch (err: any) {
       toast({ title: "Error", description: err.message, variant: "destructive" });
     } finally {
