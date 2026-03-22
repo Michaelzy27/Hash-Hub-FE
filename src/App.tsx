@@ -35,6 +35,7 @@ const App = () => (
           <Route path="/defi" element={<DeFi />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/become-sponsor" element={<BecomeSponsor />} />
+          <Route path="/sponsor/dashboard" element={<SponsorDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </AuthProvider>
