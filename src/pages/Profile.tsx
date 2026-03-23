@@ -10,6 +10,7 @@ import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { toImageSrc } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
+import placeholder from "@/assets/placeholder-gradient.svg";
 import {
   Select,
   SelectContent,
@@ -151,7 +152,7 @@ const Profile = () => {
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="h-full w-full object-cover" />
                   ) : (
-                    <span className="text-xl font-bold text-muted-foreground">{initials}</span>
+                    <img src={placeholder} alt="Avatar" className="h-full w-full object-cover" />
                   )}
                   <div className="absolute inset-0 flex items-center justify-center bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity">
                     <Edit2 className="h-4 w-4 text-foreground" />
@@ -163,7 +164,7 @@ const Profile = () => {
                   {avatarPreview ? (
                     <img src={avatarPreview} alt="Avatar" className="h-full w-full object-cover" />
                   ) : (
-                    <span className="text-xl font-bold text-primary">{initials}</span>
+                    <img src={placeholder} alt="Avatar" className="h-full w-full object-cover" />
                   )}
                 </div>
               )}

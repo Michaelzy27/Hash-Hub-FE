@@ -77,7 +77,7 @@ const SponsorDashboard = () => {
     try {
       setLoading(true);
       const [sponsorRes, bountiesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/sponsors/me`, {
+        fetch(`${API_BASE_URL}/sponsors`, {
           headers: { Authorization: `Bearer ${token}` },
         }),
         fetch(`${API_BASE_URL}/sponsors/me/bounties`, {
@@ -90,7 +90,8 @@ const SponsorDashboard = () => {
         return;
       }
 
-      const sponsorData = await sponsorRes.json();
+      const data = await sponsorRes.json();
+      const sponsorData = data.data.sponsor
       setSponsor(sponsorData);
 
       if (bountiesRes.ok) {

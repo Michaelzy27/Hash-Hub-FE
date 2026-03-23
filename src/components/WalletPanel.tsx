@@ -18,15 +18,15 @@ import { toast } from "sonner";
 
 // ─── Mock data ────────────────────────────────────────────────────────────────
 const MOCK_ASSETS = [
-  { symbol: "HBAR", name: "Hedera", balance: 1_240.5, usdValue: 62.03, change: +3.2 },
-  { symbol: "USDC", name: "USD Coin", balance: 85.0, usdValue: 85.0, change: 0 },
-  { symbol: "SAUCE", name: "SaucerSwap", balance: 3_500, usdValue: 14.0, change: -1.4 },
+  // { symbol: "HBAR", name: "Hedera", balance: 1_240.5, usdValue: 62.03, change: +3.2 },
+  // { symbol: "USDC", name: "USD Coin", balance: 85.0, usdValue: 85.0, change: 0 },
+  // { symbol: "SAUCE", name: "SaucerSwap", balance: 3_500, usdValue: 14.0, change: -1.4 },
 ];
 
 const MOCK_ACTIVITY = [
-  { type: "received", label: "Bounty Reward", amount: "+500 HBAR", date: "Mar 20", usd: "$25.00" },
-  { type: "sent", label: "Withdrawal", amount: "-200 HBAR", date: "Mar 15", usd: "$10.00" },
-  { type: "received", label: "Bounty Reward", amount: "+740.5 HBAR", date: "Mar 10", usd: "$37.03" },
+  // { type: "received", label: "Bounty Reward", amount: "+500 HBAR", date: "Mar 20", usd: "$25.00" },
+  // { type: "sent", label: "Withdrawal", amount: "-200 HBAR", date: "Mar 15", usd: "$10.00" },
+  // { type: "received", label: "Bounty Reward", amount: "+740.5 HBAR", date: "Mar 10", usd: "$37.03" },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -156,6 +156,14 @@ const WalletPanel = ({ open, onClose }: WalletPanelProps) => {
                   View on Explorer
                 </Button>
               </div>
+            </div>
+
+            {/* ── Info text ── */}
+            <div className="mx-4 mt-3 flex items-start gap-2 rounded-lg border border-primary/10 bg-primary/5 px-3 py-2.5">
+              <ShieldCheck className="h-3.5 w-3.5 text-primary flex-shrink-0 mt-0.5" />
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Your rewards won from bounties will be paid into this wallet.
+              </p>
             </div>
 
             {/* ── Tabs ── */}
