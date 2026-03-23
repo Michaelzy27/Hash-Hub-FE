@@ -56,14 +56,14 @@ const Navbar = () => {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/become-sponsor">
+            <Link to="/sponsor-info">
               <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
                 Become a Sponsor
               </Button>
             </Link>
             {isAuthenticated ? (
               <>
-                {!userProfile?.isProfileComplete && (
+                {!userProfile.isProfileComplete && (
                   <Link to="/complete-profile">
                     <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
                       Complete Your Profile
@@ -73,13 +73,13 @@ const Navbar = () => {
 
                 {/* Profile button */}
                 <button
-                    onClick={() => navigate("/profile")}
-                    className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
-                  >
-                    <span className="text-sm font-mono text-foreground">
-                      {userProfile?.email || "Profile"}
-                    </span>
-                  </button>
+                  onClick={() => navigate("/profile")}
+                  className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
+                >
+                  <span className="text-sm font-mono text-foreground">
+                    {userProfile?.email || "Profile"}
+                  </span>
+                </button>
 
                 {/* Wallet icon button */}
                 {userProfile?.isProfileComplete && (
@@ -168,14 +168,14 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="border-t border-border pt-2 mt-2 space-y-2">
-              <Link to="/become-sponsor" onClick={closeMenu} className="block">
+              <Link to="/sponsor-info" onClick={closeMenu} className="block">
                 <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
                   Become a Sponsor
                 </Button>
               </Link>
               {isAuthenticated ? (
                 <>
-                  {!userProfile?.isProfileComplete && (
+                  {!userProfile.isProfileComplete && (
                     <Link to="/complete-profile" onClick={closeMenu} className="block">
                       <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
                         Complete Your Profile
