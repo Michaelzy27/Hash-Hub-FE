@@ -43,10 +43,6 @@ const WalletPanel = ({ open, onClose }: WalletPanelProps) => {
   const walletId = userProfile?.hederaWalletId ?? null;
   const totalUsd = MOCK_ASSETS.reduce((s, a) => s + a.usdValue, 0);
 
-  const truncated = walletId
-    ? `${walletId.slice(0, 8)}...${walletId.slice(-6)}`
-    : null;
-
   const copyWallet = () => {
     if (!walletId) return;
     navigator.clipboard.writeText(walletId);
@@ -93,7 +89,7 @@ const WalletPanel = ({ open, onClose }: WalletPanelProps) => {
                   </p>
                   {walletId && (
                     <p className="text-xs text-muted-foreground mt-0.5 font-mono">
-                      {truncated}
+                      {walletId}
                     </p>
                   )}
                 </div>

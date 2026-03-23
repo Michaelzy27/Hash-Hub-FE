@@ -40,7 +40,7 @@ const Signup = () => {
 
       if (!response.ok) throw new Error(data.error || data.message || "Error signing up");
 
-      login(data.token);
+      login(data.token, data.data.user);
       toast.success("Account created successfully!");
       navigate("/");
     } catch (error) {

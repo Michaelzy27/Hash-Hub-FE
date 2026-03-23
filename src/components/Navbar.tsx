@@ -73,30 +73,32 @@ const Navbar = () => {
 
                 {/* Profile button */}
                 <button
-                  onClick={() => navigate("/profile")}
-                  className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
-                >
-                  <span className="text-sm font-mono text-foreground">
-                    {userProfile?.email || "Profile"}
-                  </span>
-                </button>
+                    onClick={() => navigate("/profile")}
+                    className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
+                  >
+                    <span className="text-sm font-mono text-foreground">
+                      {userProfile?.email || "Profile"}
+                    </span>
+                  </button>
 
                 {/* Wallet icon button */}
-                <button
-                  onClick={() => setWalletOpen(true)}
-                  className="relative flex items-center justify-center h-9 w-9 rounded-full border border-border bg-secondary/50 transition-colors hover:bg-secondary hover:border-primary/50 group"
-                  aria-label="Open wallet"
-                >
-                  <Wallet className="h-4 w-4 text-primary" />
-                  {/* Pulse indicator if wallet connected */}
-                  {hederaWallet && (
-                    <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
-                    </span>
-                  )}
-                </button>
-
+                {userProfile?.isProfileComplete && (
+                  <button
+                    onClick={() => setWalletOpen(true)}
+                    className="relative flex items-center justify-center h-9 w-9 rounded-full border border-border bg-secondary/50 transition-colors hover:bg-secondary hover:border-primary/50 group"
+                    aria-label="Open wallet"
+                  >
+                    <Wallet className="h-4 w-4 text-primary" />
+                    {/* Pulse indicator if wallet connected */}
+                    {hederaWallet && (
+                      <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                      </span>
+                    )}
+                  </button>
+                )}
+                
                 <Button
                   variant="ghost"
                   size="sm"
