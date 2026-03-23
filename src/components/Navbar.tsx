@@ -63,7 +63,7 @@ const Navbar = () => {
             </Link>
             {isAuthenticated ? (
               <>
-                {!userProfile.isProfileComplete && (
+                {!userProfile?.isProfileComplete && (
                   <Link to="/complete-profile">
                     <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
                       Complete Your Profile
@@ -173,7 +173,7 @@ const Navbar = () => {
               </Link>
               {isAuthenticated ? (
                 <>
-                  {!userProfile.isProfileComplete && (
+                  {!userProfile?.isProfileComplete && (
                     <Link to="/complete-profile" onClick={closeMenu} className="block">
                       <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
                         Complete Your Profile
