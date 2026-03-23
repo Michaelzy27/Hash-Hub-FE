@@ -37,7 +37,7 @@ const STEPS = [
 
 const CompleteProfile = () => {
   const navigate = useNavigate();
-  const { token, setProfileComplete, setUserProfile, userProfile } = useAuth();
+  const { token, setUserProfile, userProfile } = useAuth();
   const [step, setStep] = useState(0);
 
   const [firstName, setFirstName] = useState("");
@@ -126,7 +126,6 @@ const CompleteProfile = () => {
       const user = data.user;
       if (!res.ok) throw new Error(data.message || "Failed to update profile");
 
-      setProfileComplete(true);
       setUserProfile({
         ...userProfile,
         firstName: firstName.trim(),
@@ -137,7 +136,8 @@ const CompleteProfile = () => {
         twitterUsername: twitterUsername.trim(),
         avatarUrl: user.avatarUrl || undefined,
         hederaWalletId: user.hederaWalletId,
-        walletAddress: user.walletAddress
+        walletAddress: user.walletAddress,
+        isProfileComplete: user.isProfileComplete
       });
       toast.success("Profile completed! You can now register for bounties.");
       navigate("/");

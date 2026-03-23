@@ -12,16 +12,17 @@ export interface User {
   avatarUrl?: string;
   hederaWalletId?: string;
   walletAddress?: string;
+  isProfileComplete?: boolean;
 }
 
 interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
-  isProfileComplete: boolean;
+  //isProfileComplete: boolean;
   userProfile: User | null;
   login: (token: string, profile?: User) => void;
   logout: () => void;
-  setProfileComplete: (complete: boolean) => void;
+  //setProfileComplete: (complete: boolean) => void;
   setUserProfile: (profile: User) => void;
 }
 
@@ -31,9 +32,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [token, setToken] = useState<string | null>(() =>
     localStorage.getItem("auth_token")
   );
-  const [isProfileComplete, setIsProfileComplete] = useState<boolean>(() =>
-    localStorage.getItem("profile_complete") === "true"
-  );
+  // const [isProfileComplete, setIsProfileComplete] = useState<boolean>(() =>
+  //   localStorage.getItem("profile_complete") === "true"
+  // );
   const [userProfile, setUserProfileState] = useState<User | null>(() => {
     const stored = localStorage.getItem("user_profile");
     return stored ? JSON.parse(stored) : null;
@@ -53,14 +54,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("profile_complete");
     localStorage.removeItem("user_profile");
     setToken(null);
-    setIsProfileComplete(false);
+    //setIsProfileComplete(false);
     setUserProfileState(null);
   };
 
-  const setProfileComplete = (complete: boolean) => {
-    localStorage.setItem("profile_complete", String(complete));
-    setIsProfileComplete(complete);
-  };
+  // const setProfileComplete = (complete: boolean) => {
+  //   localStorage.setItem("profile_complete", String(complete));
+  //   setIsProfileComplete(complete);
+  // };
 
   const setUserProfile = (profile: User) => {
     localStorage.setItem("user_profile", JSON.stringify(profile));
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated: !!token, isProfileComplete, userProfile, login, logout, setProfileComplete, setUserProfile }}
+      value={{ token, isAuthenticated: !!token, userProfile, login, logout, setUserProfile }}
     >
       {children}
     </AuthContext.Provider>

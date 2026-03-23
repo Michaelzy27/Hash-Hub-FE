@@ -9,7 +9,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, isProfileComplete, userProfile, logout } = useAuth();
+  const { isAuthenticated, userProfile, logout } = useAuth();
   const isMobile = useIsMobile();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -66,7 +66,7 @@ const Navbar = () => {
           </Link>
           {isAuthenticated ? (
             <>
-              {!isProfileComplete && (
+              {!userProfile.isProfileComplete && (
                 <Link to="/complete-profile">
                   <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
                     Complete Your Profile
@@ -140,7 +140,7 @@ const Navbar = () => {
             </Link>
             {isAuthenticated ? (
               <>
-                {!isProfileComplete && (
+                {!userProfile.isProfileComplete && (
                   <Link to="/complete-profile" onClick={closeMenu} className="block">
                     <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
                       Complete Your Profile
