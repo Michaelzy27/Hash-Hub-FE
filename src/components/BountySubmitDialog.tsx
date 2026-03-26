@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { API_BASE_URL } from "@/config/api";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface BountySubmitDialogProps {
   open: boolean;
@@ -22,6 +23,7 @@ const BountySubmitDialog = ({ open, onOpenChange, bountyId }: BountySubmitDialog
   const [submissionLink, setSubmissionLink] = useState("");
   const [twitterLink, setTwitterLink] = useState("");
   const [otherLinks, setOtherLinks] = useState("");
+  const { token } = useAuth();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
@@ -32,7 +34,7 @@ const BountySubmitDialog = ({ open, onOpenChange, bountyId }: BountySubmitDialog
 
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
+
       const res = await fetch(`${API_BASE_URL}/bounty/submit`, {
         method: "POST",
         headers: {
