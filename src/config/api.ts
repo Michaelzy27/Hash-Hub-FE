@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://hash-hub.onrender.com";
+export const API_BASE_URL = "http://localhost:4000";
