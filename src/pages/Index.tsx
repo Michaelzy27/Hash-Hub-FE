@@ -33,6 +33,9 @@ const Index = () => {
     fetchBounties();
   }, []);
 
+  console.log("");
+  
+
   const filteredBounties = useMemo(() => {
     return bounties.filter((b) => {
       const categoryMatch = activeCategory === "All" || b.category === activeCategory;
