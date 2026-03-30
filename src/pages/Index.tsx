@@ -5,9 +5,11 @@ import FilterBar from "@/components/FilterBar";
 import BountyCard from "@/components/BountyCard";
 import { Bounty } from "@/data/bounties";
 import { API_BASE_URL } from "@/config/api";
+import { useAuth } from "@/contexts/AuthContext";
 //import { MOCK_BOUNTIES } from "@/data/bounties";
 
 const Index = () => {
+  const { token } = useAuth();
   const [bounties, setBounties] = useState<Bounty[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,9 +21,13 @@ const Index = () => {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch("${API_BASE_URL}/bounty");
-        //if (!res.ok) throw new Error(`Failed to fetch bounties (${res.status})`);
+        const res = await fetch(`${API_BASE_URL}/bounty`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) throw new Error(`Failed to fetch bounties (${res.status})`);
         const result = await res.json();
+        console.log("Bounties: ", result.data.bounties);
+        
         setBounties(result.data.bounties);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Something went wrong");
