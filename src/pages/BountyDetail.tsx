@@ -25,8 +25,25 @@ const getProjectInitials = (name: string) => {
 
 const BountyDetail = () => {
   const { id } = useParams();
+  const { token } = useAuth();
+  const { bounties, setBounties } = useBounties();
   const [submitOpen, setSubmitOpen] = useState(false);
-  const bounty = MOCK_BOUNTIES.find((b) => b.id === id);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (bounties.length === 0) {
+      setLoading(true);
+      fetch(`${API_BASE_URL}/bounty`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => res.json())
+        .then((result) => setBounties(result.data.bounties))
+        .catch(() => {})
+        .finally(() => setLoading(false));
+    }
+  }, [bounties.length, token, setBounties]);
+
+  const bounty = bounties.find((b) => b.id === id);
 
   if (!bounty) {
     return (
