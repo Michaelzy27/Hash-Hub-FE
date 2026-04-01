@@ -16,6 +16,7 @@ import BecomeSponsor from "./pages/BecomeSponsor.tsx";
 import SponsorDashboard from "./pages/SponsorDashboard.tsx";
 import SponsorInfo from "./pages/SponsorInfo.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { BountyProvider } from "./contexts/BountyContext.tsx";
 
 const queryClient = new QueryClient();
 
