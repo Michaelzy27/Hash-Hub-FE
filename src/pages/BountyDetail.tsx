@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, MessageSquare, Shield, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import BountySubmitDialog from "@/components/BountySubmitDialog";
-import { MOCK_BOUNTIES } from "@/data/bounties";
+import { useBounties } from "@/contexts/BountyContext";
+import { Bounty } from "@/data/bounties";
+import { API_BASE_URL } from "@/config/api";
+import { useAuth } from "@/contexts/AuthContext";
 
 const getTimeRemaining = (dueDate: string) => {
   const now = new Date();
