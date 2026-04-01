@@ -27,6 +27,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+        <BountyProvider>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/bounty/:id" element={<BountyDetail />} />
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/sponsor-info" element={<SponsorInfo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </BountyProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>

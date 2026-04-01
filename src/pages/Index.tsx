@@ -6,11 +6,11 @@ import BountyCard from "@/components/BountyCard";
 import { Bounty } from "@/data/bounties";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
-//import { MOCK_BOUNTIES } from "@/data/bounties";
+import { useBounties } from "@/contexts/BountyContext";
 
 const Index = () => {
   const { token } = useAuth();
-  const [bounties, setBounties] = useState<Bounty[]>([]);
+  const { bounties, setBounties } = useBounties();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");

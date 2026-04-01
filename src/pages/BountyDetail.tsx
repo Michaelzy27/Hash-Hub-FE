@@ -45,6 +45,17 @@ const BountyDetail = () => {
 
   const bounty = bounties.find((b) => b.id === id);
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="flex justify-center py-20">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        </div>
+      </div>
+    );
+  }
+
   if (!bounty) {
     return (
       <div className="min-h-screen bg-background">
