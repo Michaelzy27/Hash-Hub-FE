@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, Clock, MessageSquare, Shield, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import BountySubmitDialog from "@/components/BountySubmitDialog";
-import { MOCK_BOUNTIES } from "@/data/bounties";
+import { useBounties } from "@/contexts/BountyContext";
+import { Bounty } from "@/data/bounties";
+import { API_BASE_URL } from "@/config/api";
+import { useAuth } from "@/contexts/AuthContext";
 
 const getTimeRemaining = (dueDate: string) => {
   const now = new Date();
@@ -22,8 +25,36 @@ const getProjectInitials = (name: string) => {
 
 const BountyDetail = () => {
   const { id } = useParams();
+  const { token } = useAuth();
+  const { bounties, setBounties } = useBounties();
   const [submitOpen, setSubmitOpen] = useState(false);
-  const bounty = MOCK_BOUNTIES.find((b) => b.id === id);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (bounties.length === 0) {
+      setLoading(true);
+      fetch(`${API_BASE_URL}/bounty`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then((res) => res.json())
+        .then((result) => setBounties(result.data.bounties))
+        .catch(() => {})
+        .finally(() => setLoading(false));
+    }
+  }, [bounties.length, token, setBounties]);
+
+  const bounty = bounties.find((b) => b.id === id);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <div className="flex justify-center py-20">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+        </div>
+      </div>
+    );
+  }
 
   if (!bounty) {
     return (

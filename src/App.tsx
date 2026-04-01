@@ -16,6 +16,7 @@ import BecomeSponsor from "./pages/BecomeSponsor.tsx";
 import SponsorDashboard from "./pages/SponsorDashboard.tsx";
 import SponsorInfo from "./pages/SponsorInfo.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { BountyProvider } from "./contexts/BountyContext.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
+        <BountyProvider>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/bounty/:id" element={<BountyDetail />} />
@@ -40,6 +42,7 @@ const App = () => (
           <Route path="/sponsor-info" element={<SponsorInfo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </BountyProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
