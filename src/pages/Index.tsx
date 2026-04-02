@@ -43,6 +43,7 @@ const Index = () => {
   
 
   const filteredBounties = useMemo(() => {
+    //if (!bounties) return [];
     return bounties.filter((b) => {
       const categoryMatch = activeCategory === "All" || b.category === activeCategory;
       const statusMatch = activeStatus === "all" || b.status === activeStatus;
@@ -75,6 +76,10 @@ const Index = () => {
               >
                 Try again
               </button>
+            </div>
+          ) : bounties.length === 0 ? (
+            <div className="py-20 text-center">
+              <p className="text-muted-foreground">No bounties available yet.</p>
             </div>
           ) : filteredBounties.length > 0 ? (
             filteredBounties.map((bounty, i) => (
