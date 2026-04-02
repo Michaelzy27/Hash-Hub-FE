@@ -148,17 +148,19 @@ const BountyDetail = () => {
                 </p>
               </div>
 
-              <div className="bounty-card !cursor-default">
-                <h2 className="text-base font-semibold text-foreground mb-3">Requirements</h2>
-                <ul className="space-y-2">
-                  {bounty.requirements.map((req, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
-                      {req}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {bounty.requirements && bounty.requirements.length > 0 && (
+                <div className="bounty-card !cursor-default">
+                  <h2 className="text-base font-semibold text-foreground mb-3">Requirements</h2>
+                  <ul className="space-y-2">
+                    {bounty.requirements.map((req, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
 
             {/* Sidebar */}
