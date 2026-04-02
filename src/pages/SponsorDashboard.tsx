@@ -77,10 +77,10 @@ const SponsorDashboard = () => {
     try {
       setLoading(true);
       const [sponsorRes, bountiesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/sponsors`, {
+        apiFetch("/sponsors", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`${API_BASE_URL}/sponsors/me/bounties`, {
+        apiFetch("/sponsors/me/bounties", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

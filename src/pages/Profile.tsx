@@ -97,7 +97,7 @@ const Profile = () => {
       formData.append("twitterUsername", twitterUsername.trim());
       if (avatarFile) formData.append("avatar", avatarFile);
 
-      const res = await fetch(`${API_BASE_URL}/auth/complete-profile`, {
+      const res = await apiFetch("/auth/complete-profile", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,

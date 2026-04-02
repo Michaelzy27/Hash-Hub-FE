@@ -73,7 +73,7 @@ const CreateBountyDialog = ({ open, onOpenChange, onCreated }: CreateBountyDialo
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/bounties/create`, {
+      const res = await apiFetch("/bounties/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

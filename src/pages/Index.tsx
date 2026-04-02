@@ -21,7 +21,7 @@ const Index = () => {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(`${API_BASE_URL}/bounty`, {
+        const res = await apiFetch("/bounty", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(`Failed to fetch bounties (${res.status})`);

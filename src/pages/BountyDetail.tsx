@@ -33,7 +33,7 @@ const BountyDetail = () => {
   useEffect(() => {
     if (bounties.length === 0) {
       setLoading(true);
-      fetch(`${API_BASE_URL}/bounty`, {
+      apiFetch("/bounty", {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())

@@ -96,7 +96,7 @@ const BecomeSponsor = () => {
       formData.append("industry", industry);
       formData.append("companyBio", companyBio);
 
-      const res = await fetch(`${API_BASE_URL}/sponsors/create`, {
+      const res = await apiFetch("/sponsors/create", {
         method: "POST",
         headers: {
           ...(token ? { Authorization: `Bearer ${token}` } : {}),

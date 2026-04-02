@@ -35,7 +35,7 @@ const BountySubmitDialog = ({ open, onOpenChange, bountyId }: BountySubmitDialog
     setLoading(true);
     try {
 
-      const res = await fetch(`${API_BASE_URL}/bounty/submit`, {
+      const res = await apiFetch("/bounty/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
