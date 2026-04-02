@@ -36,7 +36,6 @@ const Login = () => {
       if (!response.ok) throw new Error(data.error || data.message || "Login failed. Please try again.");
 
       login(data.token, data.data.user);
-      toast.success("Logged in successfully!");
       navigate("/");
     } catch (error) {
       const message = error instanceof Error ? error.message : "Login failed. Please try again.";

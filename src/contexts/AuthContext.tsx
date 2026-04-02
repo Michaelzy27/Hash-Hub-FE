@@ -13,6 +13,7 @@ export interface User {
   hederaWalletId?: string;
   walletAddress?: string;
   isProfileComplete?: boolean;
+  isSponsor?: boolean;
 }
 
 interface AuthContextType {
