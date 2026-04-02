@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -35,7 +35,7 @@ const BountySubmitDialog = ({ open, onOpenChange, bountyId }: BountySubmitDialog
     setLoading(true);
     try {
 
-      const res = await fetch(`${API_BASE_URL}/bounty/submit`, {
+      const res = await apiFetch("/bounty/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

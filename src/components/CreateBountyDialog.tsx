@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useAuth } from "@/contexts/AuthContext";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { toast } from "@/hooks/use-toast";
 import { Plus, X } from "lucide-react";
 
@@ -73,7 +73,7 @@ const CreateBountyDialog = ({ open, onOpenChange, onCreated }: CreateBountyDialo
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(`${API_BASE_URL}/bounties/create`, {
+      const res = await apiFetch("/bounties/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import BountySubmitDialog from "@/components/BountySubmitDialog";
 import { useBounties } from "@/contexts/BountyContext";
 import { Bounty } from "@/data/bounties";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
 
 const getTimeRemaining = (dueDate: string) => {
@@ -33,7 +33,7 @@ const BountyDetail = () => {
   useEffect(() => {
     if (bounties.length === 0) {
       setLoading(true);
-      fetch(`${API_BASE_URL}/bounty`, {
+      apiFetch("/bounty", {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())

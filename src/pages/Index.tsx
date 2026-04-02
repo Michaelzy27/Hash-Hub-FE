@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import BountyCard from "@/components/BountyCard";
 import { Bounty } from "@/data/bounties";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
 import { useBounties } from "@/contexts/BountyContext";
 
@@ -21,7 +21,7 @@ const Index = () => {
       try {
         setLoading(true);
         setError(null);
-        const res = await fetch(`${API_BASE_URL}/bounty`, {
+        const res = await apiFetch("/bounty", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error(`Failed to fetch bounties (${res.status})`);

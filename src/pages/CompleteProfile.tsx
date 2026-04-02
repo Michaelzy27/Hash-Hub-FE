@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { Upload, Plus, X, ChevronRight, ChevronLeft, User, Briefcase, Share2, CheckCircle2 } from "lucide-react";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
 import { toImageSrc } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
@@ -114,7 +114,7 @@ const CompleteProfile = () => {
       if (referralCode.trim()) formData.append("referralCode", referralCode.trim());
       if (avatarFile) formData.append("avatar", avatarFile);
 
-      const res = await fetch(`${API_BASE_URL}/auth/complete-profile`, {
+      const res = await apiFetch("/auth/complete-profile", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

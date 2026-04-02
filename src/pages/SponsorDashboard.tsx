@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { toast } from "@/hooks/use-toast";
 import { toImageSrc } from "@/lib/utils";
 import CreateBountyDialog from "@/components/CreateBountyDialog";
@@ -77,10 +77,10 @@ const SponsorDashboard = () => {
     try {
       setLoading(true);
       const [sponsorRes, bountiesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/sponsors`, {
+        apiFetch("/sponsors", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        fetch(`${API_BASE_URL}/sponsors/me/bounties`, {
+        apiFetch("/sponsors/me/bounties", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);

@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import { User, MapPin, AtSign, Twitter, Edit2, Save, X, Plus, ArrowLeft, Wallet, Copy } from "lucide-react";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
 import { toImageSrc } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
@@ -97,7 +97,7 @@ const Profile = () => {
       formData.append("twitterUsername", twitterUsername.trim());
       if (avatarFile) formData.append("avatar", avatarFile);
 
-      const res = await fetch(`${API_BASE_URL}/auth/complete-profile`, {
+      const res = await apiFetch("/auth/complete-profile", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: formData,
