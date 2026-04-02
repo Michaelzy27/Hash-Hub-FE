@@ -56,11 +56,26 @@ const Navbar = () => {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
-            <Link to="/sponsor-info">
-              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
-                Become a Sponsor
-              </Button>
-            </Link>
+            {userProfile?.isSponsor ? (
+              <Link
+                  to="/sponsor/dashboard"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === "/sponsor/dashboard"
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Sponsor
+              </Link>
+              
+            ) : (
+              <Link to="/sponsor-info">
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
+                  Become a Sponsor
+                </Button>
+              </Link>
+            )
+            }
             {isAuthenticated ? (
               <>
                 {!userProfile.isProfileComplete && (
