@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
 

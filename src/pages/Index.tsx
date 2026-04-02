@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import BountyCard from "@/components/BountyCard";
 import { Bounty } from "@/data/bounties";
-import { API_BASE_URL } from "@/config/api";
+import { apiFetch } from "@/config/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
 import { useBounties } from "@/contexts/BountyContext";
 
