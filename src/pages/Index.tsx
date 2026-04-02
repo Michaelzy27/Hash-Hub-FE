@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import BountyCard from "@/components/BountyCard";
-import { Bounty, MOCK_BOUNTIES } from "@/data/bounties";
+import { Bounty } from "@/data/bounties";
 import { API_BASE_URL } from "@/config/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { useBounties } from "@/contexts/BountyContext";
