@@ -39,8 +39,6 @@ const Index = () => {
     fetchBounties();
   }, []);
 
-  console.log("");
-  
 
   const filteredBounties = useMemo(() => {
     return bounties.filter((b) => {
