@@ -238,16 +238,18 @@ const Navbar = () => {
                       </Button>
                     </>
                   ) : (
-                <div className="flex gap-2">
-                  <Link to="/login" onClick={closeMenu} className="flex-1">
-                    <Button variant="ghost" size="sm" className="w-full text-muted-foreground">
-                      Login
-                    </Button>
-                  </Link>
-                  <Link to="/signup" onClick={closeMenu} className="flex-1">
-                    <Button size="sm" className="w-full">Sign Up</Button>
-                  </Link>
-                </div>
+                    <div className="flex gap-2">
+                      <Link to="/login" onClick={closeMenu} className="flex-1">
+                        <Button variant="ghost" size="sm" className="w-full text-muted-foreground">
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/signup" onClick={closeMenu} className="flex-1">
+                        <Button size="sm" className="w-full">Sign Up</Button>
+                      </Link>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>
