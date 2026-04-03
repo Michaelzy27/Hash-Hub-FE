@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { apiFetch } from "@/config/apiClient";
 
 export interface User {
   id?: string
@@ -40,6 +41,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const stored = localStorage.getItem("user_profile");
     return stored ? JSON.parse(stored) : null;
   });
+
+  // Fetch latest user profile from backend on app reload
+  useEffect(() => {
+    if (!token) return;
+
+    apiFetch("/auth/profile", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (res.ok) return res.json();
+        return null;
+      })
+      .then((data) => {
+        if (data) {
+          localStorage.setItem("user_profile", JSON.stringify(data));
+          setUserProfileState(data);
+        }
+      })
+      .catch(() => {
+        // Network error; keep cached profile
+      });
+  }, [token]);
 
   const login = (newToken: string, profile?: User) => {
     localStorage.setItem("auth_token", newToken);
