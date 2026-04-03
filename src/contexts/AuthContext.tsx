@@ -20,6 +20,7 @@ export interface User {
 interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
+  isProfileLoading: boolean;
   //isProfileComplete: boolean;
   userProfile: User | null;
   login: (token: string, profile?: User) => void;
