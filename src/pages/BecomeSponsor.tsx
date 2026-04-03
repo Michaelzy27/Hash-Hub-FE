@@ -26,7 +26,7 @@ const INDUSTRIES = [
 
 const BecomeSponsor = () => {
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, userProfile, setUserProfile } = useAuth();
 
   // About You
   const [firstName, setFirstName] = useState("");
@@ -109,6 +109,9 @@ const BecomeSponsor = () => {
         throw new Error(data.message || "Failed to create sponsor");
       }
 
+      if (userProfile) {
+        setUserProfile({ ...userProfile, isSponsor: true });
+      }
       toast({ title: "Sponsor profile created!", description: "Welcome aboard 🎉" });
       navigate("/sponsor/dashboard");
     } catch (err: any) {
