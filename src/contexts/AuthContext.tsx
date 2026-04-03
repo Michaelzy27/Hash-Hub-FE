@@ -42,11 +42,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const stored = localStorage.getItem("user_profile");
     return stored ? JSON.parse(stored) : null;
   });
+  const [isProfileLoading, setIsProfileLoading] = useState<boolean>(!!localStorage.getItem("auth_token"));
 
   // Fetch latest user profile from backend on app reload
   useEffect(() => {
     if (!token) return;
 
+    setIsProfileLoading(true);
     apiFetch("/profile", {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -65,6 +67,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       })
       .catch(() => {
         // Network error; keep cached profile
+      })
+      .finally(() => {
+        setIsProfileLoading(false);
       });
   }, [token]);
 
