@@ -61,83 +61,93 @@ const Navbar = () => {
 
           {/* Desktop actions */}
           <div className="hidden md:flex items-center gap-3">
-            {userProfile?.isSponsor ? (
-              <Link
-                  to="/sponsor/dashboard"
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    location.pathname === "/sponsor/dashboard"
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  Sponsor
-              </Link>
-              
-            ) : (
-              <Link to="/sponsor-info">
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
-                  Become a Sponsor
-                </Button>
-              </Link>
-            )
-            }
-            {isAuthenticated ? (
+            {isAuthenticated && isProfileLoading ? (
               <>
-                {!userProfile.isProfileComplete && (
-                  <Link to="/complete-profile">
-                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
-                      Complete Your Profile
-                    </Button>
-                  </Link>
-                )}
-
-                {/* Profile button */}
-                <button
-                  onClick={() => navigate("/profile")}
-                  className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
-                >
-                  <span className="text-sm font-mono text-foreground">
-                    {userProfile?.email || "Profile"}
-                  </span>
-                </button>
-
-                {/* Wallet icon button */}
-                {userProfile?.isProfileComplete && (
-                  <button
-                    onClick={() => setWalletOpen(true)}
-                    className="relative flex items-center justify-center h-9 w-9 rounded-full border border-border bg-secondary/50 transition-colors hover:bg-secondary hover:border-primary/50 group"
-                    aria-label="Open wallet"
-                  >
-                    <Wallet className="h-4 w-4 text-primary" />
-                    {/* Pulse indicator if wallet connected */}
-                    {hederaWallet && (
-                      <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
-                      </span>
-                    )}
-                  </button>
-                )}
-                
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground"
-                  onClick={() => { logout(); navigate("/login"); }}
-                >
-                  Logout
-                </Button>
+                <NavSkeleton className="w-[120px]" />
+                <NavSkeleton className="w-[150px]" />
+                <NavSkeleton className="w-[140px]" />
               </>
             ) : (
               <>
-                <Link to="/login">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/signup">
-                  <Button size="sm">Sign Up</Button>
-                </Link>
+                {userProfile?.isSponsor ? (
+                  <Link
+                      to="/sponsor/dashboard"
+                      className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        location.pathname === "/sponsor/dashboard"
+                          ? "text-primary bg-primary/10"
+                          : "text-muted-foreground hover:text-foreground"
+                      }`}
+                    >
+                      Sponsor
+                  </Link>
+                  
+                ) : (
+                  <Link to="/sponsor-info">
+                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
+                      Become a Sponsor
+                    </Button>
+                  </Link>
+                )
+                }
+                {isAuthenticated ? (
+                  <>
+                    {!userProfile.isProfileComplete && (
+                      <Link to="/complete-profile">
+                        <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/10">
+                          Complete Your Profile
+                        </Button>
+                      </Link>
+                    )}
+
+                    {/* Profile button */}
+                    <button
+                      onClick={() => navigate("/profile")}
+                      className="flex items-center gap-2 rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
+                    >
+                      <span className="text-sm font-mono text-foreground">
+                        {userProfile?.email || "Profile"}
+                      </span>
+                    </button>
+
+                    {/* Wallet icon button */}
+                    {userProfile?.isProfileComplete && (
+                      <button
+                        onClick={() => setWalletOpen(true)}
+                        className="relative flex items-center justify-center h-9 w-9 rounded-full border border-border bg-secondary/50 transition-colors hover:bg-secondary hover:border-primary/50 group"
+                        aria-label="Open wallet"
+                      >
+                        <Wallet className="h-4 w-4 text-primary" />
+                        {/* Pulse indicator if wallet connected */}
+                        {hederaWallet && (
+                          <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                          </span>
+                        )}
+                      </button>
+                    )}
+                    
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-muted-foreground"
+                      onClick={() => { logout(); navigate("/login"); }}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login">
+                      <Button variant="ghost" size="sm" className="text-muted-foreground">
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to="/signup">
+                      <Button size="sm">Sign Up</Button>
+                    </Link>
+                  </>
+                )}
               </>
             )}
           </div>
