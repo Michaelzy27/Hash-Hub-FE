@@ -1,4 +1,5 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { apiFetch } from "@/config/apiClient";
 
 export interface User {
   id?: string
