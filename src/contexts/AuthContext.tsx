@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (!token) return;
 
-    apiFetch("/auth/profile", {
+    apiFetch("/profile", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -55,8 +55,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       })
       .then((data) => {
         if (data) {
-          localStorage.setItem("user_profile", JSON.stringify(data));
-          setUserProfileState(data);
+          const user = data.data.user;
+          console.log("User: ", user);
+          
+          localStorage.setItem("user_profile", JSON.stringify(user));
+          setUserProfileState(user);
         }
       })
       .catch(() => {
