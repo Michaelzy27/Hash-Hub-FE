@@ -198,38 +198,46 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="border-t border-border pt-2 mt-2 space-y-2">
-              <Link to="/sponsor-info" onClick={closeMenu} className="block">
-                <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
-                  Become a Sponsor
-                </Button>
-              </Link>
-              {isAuthenticated ? (
+              {isAuthenticated && isProfileLoading ? (
                 <>
-                  {!userProfile.isProfileComplete && (
-                    <Link to="/complete-profile" onClick={closeMenu} className="block">
-                      <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
-                        Complete Your Profile
-                      </Button>
-                    </Link>
-                  )}
-                  <button
-                    onClick={() => { navigate("/profile"); closeMenu(); }}
-                    className="flex items-center gap-2 w-full rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
-                  >
-                    <span className="text-sm font-mono text-foreground">
-                      {userProfile?.email || "Profile"}
-                    </span>
-                  </button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="w-full text-muted-foreground"
-                    onClick={() => { logout(); navigate("/login"); closeMenu(); }}
-                  >
-                    Logout
-                  </Button>
+                  <NavSkeleton className="w-full" />
+                  <NavSkeleton className="w-full" />
+                  <NavSkeleton className="w-full" />
                 </>
               ) : (
+                <>
+                  <Link to="/sponsor-info" onClick={closeMenu} className="block">
+                    <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
+                      Become a Sponsor
+                    </Button>
+                  </Link>
+                  {isAuthenticated ? (
+                    <>
+                      {!userProfile.isProfileComplete && (
+                        <Link to="/complete-profile" onClick={closeMenu} className="block">
+                          <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary/10">
+                            Complete Your Profile
+                          </Button>
+                        </Link>
+                      )}
+                      <button
+                        onClick={() => { navigate("/profile"); closeMenu(); }}
+                        className="flex items-center gap-2 w-full rounded-full px-3 py-1.5 border border-border bg-secondary/50 transition-colors hover:bg-secondary"
+                      >
+                        <span className="text-sm font-mono text-foreground">
+                          {userProfile?.email || "Profile"}
+                        </span>
+                      </button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full text-muted-foreground"
+                        onClick={() => { logout(); navigate("/login"); closeMenu(); }}
+                      >
+                        Logout
+                      </Button>
+                    </>
+                  ) : (
                 <div className="flex gap-2">
                   <Link to="/login" onClick={closeMenu} className="flex-1">
                     <Button variant="ghost" size="sm" className="w-full text-muted-foreground">
