@@ -6,11 +6,16 @@ import { Wallet, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import WalletPanel from "@/components/WalletPanel";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const NavSkeleton = ({ className }: { className?: string }) => (
+  <Skeleton className={`h-8 rounded-full ${className ?? ""}`} />
+);
 
 const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isAuthenticated, userProfile, logout } = useAuth();
+  const { isAuthenticated, isProfileLoading, userProfile, logout } = useAuth();
   const isMobile = useIsMobile();
   const [menuOpen, setMenuOpen] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
