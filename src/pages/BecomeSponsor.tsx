@@ -26,7 +26,7 @@ const INDUSTRIES = [
 
 const BecomeSponsor = () => {
   const navigate = useNavigate();
-  const { token } = useAuth();
+  const { token, userProfile, setUserProfile } = useAuth();
 
   // About You
   const [firstName, setFirstName] = useState("");
