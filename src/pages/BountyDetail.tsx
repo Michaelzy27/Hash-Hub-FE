@@ -131,7 +131,7 @@ const BountyDetail = () => {
               </div>
               <div className="text-right flex-shrink-0">
                 <div className="reward-amount text-2xl">
-                  {bounty.reward.toLocaleString()}
+                  {Number(bounty.reward).toLocaleString()}
                 </div>
                 <div className="metadata-text font-mono text-sm">{bounty.currency}</div>
               </div>

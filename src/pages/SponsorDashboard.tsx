@@ -80,7 +80,7 @@ const SponsorDashboard = () => {
         apiFetch("/sponsors", {
           headers: { Authorization: `Bearer ${token}` },
         }),
-        apiFetch("/sponsors/me/bounties", {
+        apiFetch("/sponsors/bounties", {
           headers: { Authorization: `Bearer ${token}` },
         }),
       ]);
@@ -95,7 +95,8 @@ const SponsorDashboard = () => {
       setSponsor(sponsorData);
 
       if (bountiesRes.ok) {
-        const bountiesData = await bountiesRes.json();
+        const data = await bountiesRes.json();
+        const bountiesData = data.data.bounties;
         setBounties(Array.isArray(bountiesData) ? bountiesData : []);
       }
     } catch {
@@ -206,7 +207,7 @@ const SponsorDashboard = () => {
             },
             {
               label: "Total Rewards",
-              value: `${totalRewards.toLocaleString()} HBAR`,
+              value: `${Number(totalRewards).toLocaleString()} HBAR`,
               icon: TrendingUp,
             },
             {

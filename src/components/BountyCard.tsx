@@ -90,7 +90,7 @@ const BountyCard = ({ bounty, index }: BountyCardProps) => {
         {/* Reward */}
         <div className="flex-shrink-0 text-right">
           <div className="reward-amount text-lg">
-            {bounty.reward.toLocaleString()}
+            {Number(bounty.reward).toLocaleString()}
           </div>
           <div className="metadata-text font-mono">{bounty.currency}</div>
         </div>
