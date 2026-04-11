@@ -9,6 +9,7 @@ import { useBounties } from "@/contexts/BountyContext";
 import { Bounty } from "@/data/bounties";
 import { apiFetch } from "@/config/apiClient";
 import { useAuth } from "@/contexts/AuthContext";
+import { toImageSrc } from "@/lib/utils";
 
 const getTimeRemaining = (dueDate: string) => {
   const now = new Date();
