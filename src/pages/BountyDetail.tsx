@@ -104,8 +104,12 @@ const BountyDetail = () => {
           {/* Header */}
           <div className="bounty-card !cursor-default mb-6">
             <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-base font-semibold text-primary">
-                {getProjectInitials(bounty.project)}
+              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-base font-semibold text-primary overflow-hidden">
+                {bounty.projectLogo ? (
+                  <img src={bounty.projectLogo} alt={bounty.project} className="w-full h-full object-cover" />
+                ) : (
+                  getProjectInitials(bounty.project)
+                )}
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
@@ -184,8 +188,12 @@ const BountyDetail = () => {
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-3">About {bounty.project}</h3>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-8 h-8 rounded-md bg-secondary flex items-center justify-center text-xs font-semibold text-primary">
-                    {getProjectInitials(bounty.project)}
+                  <div className="w-8 h-8 rounded-md bg-secondary flex items-center justify-center text-xs font-semibold text-primary overflow-hidden">
+                    {bounty.projectLogo ? (
+                      <img src={bounty.projectLogo} alt={bounty.project} className="w-full h-full object-cover" />
+                    ) : (
+                      getProjectInitials(bounty.project)
+                    )}
                   </div>
                   <div>
                     <div className="text-sm font-medium text-foreground">{bounty.project}</div>
