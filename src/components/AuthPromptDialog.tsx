@@ -19,21 +19,21 @@ const AuthPromptDialog = ({ open, onOpenChange }: AuthPromptDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md p-0 overflow-hidden bg-gradient-to-br from-background via-background to-muted/20 border border-border/50 shadow-2xl">
-        {/* Top decorative bar */}
-        <div className="h-2 bg-gradient-to-r from-cyan-500 via-primary to-purple-500" />
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden border border-border/50 shadow-2xl">
+        {/* Top decorative bar with gradient */}
+        <div className="h-2 bg-gradient-to-r from-primary via-accent to-primary/80" />
         
-        {/* Icon header */}
-        <div className="pt-8 pb-4 flex justify-center">
+        {/* Icon header with glow effect */}
+        <div className="pt-10 pb-6 flex justify-center">
           <div className="relative">
-            <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full" />
-            <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 flex items-center justify-center">
-              <Lock className="w-7 h-7 text-cyan-400" />
+            <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150" />
+            <div className="relative w-20 h-20 rounded-2xl bg-muted/50 border border-border flex items-center justify-center shadow-xl">
+              <Lock className="w-8 h-8 text-primary" />
             </div>
           </div>
         </div>
 
-        <DialogHeader className="px-6 pb-4 space-y-3">
+        <DialogHeader className="px-8 pb-6 space-y-4">
           <DialogTitle className="text-2xl font-bold text-center tracking-tight">
             Authentication Required
           </DialogTitle>
@@ -43,10 +43,10 @@ const AuthPromptDialog = ({ open, onOpenChange }: AuthPromptDialogProps) => {
         </DialogHeader>
 
         {/* Action buttons */}
-        <div className="px-6 pb-8 pt-2 space-y-3">
+        <div className="px-8 pb-8 pt-2 space-y-4">
           <Button
             size="lg"
-            className="w-full h-12 text-base font-semibold bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 text-white shadow-lg shadow-cyan-500/25 transition-all duration-200 hover:shadow-cyan-500/40 hover:scale-[1.02] group"
+            className="w-full h-14 text-base font-semibold bg-primary hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all duration-200 hover:shadow-primary/30 hover:scale-[1.02] group"
             onClick={() => {
               onOpenChange(false);
               navigate("/login");
@@ -60,7 +60,7 @@ const AuthPromptDialog = ({ open, onOpenChange }: AuthPromptDialogProps) => {
           <Button
             variant="outline"
             size="lg"
-            className="w-full h-12 text-base font-medium border-2 hover:bg-muted/50 transition-all duration-200 group"
+            className="w-full h-14 text-base font-medium border-2 hover:bg-muted transition-all duration-200 group"
             onClick={() => {
               onOpenChange(false);
               navigate("/signup");
@@ -72,8 +72,8 @@ const AuthPromptDialog = ({ open, onOpenChange }: AuthPromptDialogProps) => {
         </div>
 
         {/* Bottom subtle text */}
-        <div className="px-6 pb-6">
-          <p className="text-xs text-center text-muted-foreground/60">
+        <div className="px-8 pb-8">
+          <p className="text-xs text-center text-muted-foreground/70">
             Free to join. No credit card required.
           </p>
         </div>
