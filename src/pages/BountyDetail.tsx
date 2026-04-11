@@ -187,6 +187,10 @@ const BountyDetail = () => {
                 onOpenChange={setSubmitOpen}
                 bountyId={bounty.id}
               />
+              <AuthPromptDialog
+                open={authPromptOpen}
+                onOpenChange={setAuthPromptOpen}
+              />
 
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-3">About {bounty.project}</h3>
