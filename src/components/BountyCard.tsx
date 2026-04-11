@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import type { Bounty } from "@/data/bounties";
 import { Clock, MessageSquare, Shield } from "lucide-react";
+import { toImageSrc } from "@/lib/utils";
 
 interface BountyCardProps {
   bounty: Bounty;
@@ -54,7 +55,7 @@ const BountyCard = ({ bounty, index }: BountyCardProps) => {
         {/* Project Logo */}
         <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-sm font-semibold text-primary overflow-hidden">
           {bounty.projectLogo ? (
-            <img src={bounty.projectLogo} alt={bounty.project} className="w-full h-full object-cover" />
+            <img src={toImageSrc(bounty.projectLogo) || ''} alt={bounty.project} className="w-full h-full object-cover" />
           ) : (
             getProjectInitials(bounty.project)
           )}
