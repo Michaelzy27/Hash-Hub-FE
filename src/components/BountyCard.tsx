@@ -52,8 +52,12 @@ const BountyCard = ({ bounty, index }: BountyCardProps) => {
     >
       <Link to={`/bounty/${bounty.id}`} className="bounty-card flex items-center gap-4 group">
         {/* Project Logo */}
-        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-sm font-semibold text-primary">
-          {getProjectInitials(bounty.project)}
+        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-sm font-semibold text-primary overflow-hidden">
+          {bounty.projectLogo ? (
+            <img src={bounty.projectLogo} alt={bounty.project} className="w-full h-full object-cover" />
+          ) : (
+            getProjectInitials(bounty.project)
+          )}
         </div>
 
         {/* Main Content */}
