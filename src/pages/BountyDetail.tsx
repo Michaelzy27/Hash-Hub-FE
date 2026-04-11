@@ -5,6 +5,7 @@ import { ArrowLeft, Clock, MessageSquare, Shield, ExternalLink } from "lucide-re
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import BountySubmitDialog from "@/components/BountySubmitDialog";
+import AuthPromptDialog from "@/components/AuthPromptDialog";
 import { useBounties } from "@/contexts/BountyContext";
 import { Bounty } from "@/data/bounties";
 import { apiFetch } from "@/config/apiClient";
@@ -29,6 +30,7 @@ const BountyDetail = () => {
   const { token } = useAuth();
   const { bounties, setBounties } = useBounties();
   const [submitOpen, setSubmitOpen] = useState(false);
+  const [authPromptOpen, setAuthPromptOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -172,7 +174,7 @@ const BountyDetail = () => {
             <div className="space-y-4">
               <div className="bounty-card !cursor-default">
                 <h3 className="text-sm font-semibold text-foreground mb-4">Apply for this Bounty</h3>
-                <Button className="w-full" size="lg" onClick={() => setSubmitOpen(true)}>
+                <Button className="w-full" size="lg" onClick={() => token ? setSubmitOpen(true) : setAuthPromptOpen(true)}>
                   Submit Application
                 </Button>
                 <p className="text-xs text-muted-foreground mt-3 text-center">
@@ -184,6 +186,10 @@ const BountyDetail = () => {
                 open={submitOpen}
                 onOpenChange={setSubmitOpen}
                 bountyId={bounty.id}
+              />
+              <AuthPromptDialog
+                open={authPromptOpen}
+                onOpenChange={setAuthPromptOpen}
               />
 
               <div className="bounty-card !cursor-default">
