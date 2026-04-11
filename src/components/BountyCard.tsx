@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import type { Bounty } from "@/data/bounties";
 import { Clock, MessageSquare, Shield } from "lucide-react";
+import { toImageSrc } from "@/lib/utils";
 
 interface BountyCardProps {
   bounty: Bounty;
