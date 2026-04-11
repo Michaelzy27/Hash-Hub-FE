@@ -107,7 +107,7 @@ const BountyDetail = () => {
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-base font-semibold text-primary overflow-hidden">
                 {bounty.projectLogo ? (
-                  <img src={bounty.projectLogo} alt={bounty.project} className="w-full h-full object-cover" />
+                  <img src={toImageSrc(bounty.projectLogo) || ''} alt={bounty.project} className="w-full h-full object-cover" />
                 ) : (
                   getProjectInitials(bounty.project)
                 )}
@@ -191,7 +191,7 @@ const BountyDetail = () => {
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-8 h-8 rounded-md bg-secondary flex items-center justify-center text-xs font-semibold text-primary overflow-hidden">
                     {bounty.projectLogo ? (
-                      <img src={bounty.projectLogo} alt={bounty.project} className="w-full h-full object-cover" />
+                      <img src={toImageSrc(bounty.projectLogo) || ''} alt={bounty.project} className="w-full h-full object-cover" />
                     ) : (
                       getProjectInitials(bounty.project)
                     )}
