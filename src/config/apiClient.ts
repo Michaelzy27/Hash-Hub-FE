@@ -20,7 +20,7 @@ export async function apiFetch(
     toast.error("Session expired. Please log in again.");
 
     // Redirect to login
-    window.location.href = "/login";
+    //window.location.href = "/login";
 
     // Return the response but callers won't typically reach past this
     return res;
