@@ -5,6 +5,7 @@ import { ArrowLeft, Clock, MessageSquare, Shield, ExternalLink } from "lucide-re
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import BountySubmitDialog from "@/components/BountySubmitDialog";
+import AuthPromptDialog from "@/components/AuthPromptDialog";
 import { useBounties } from "@/contexts/BountyContext";
 import { Bounty } from "@/data/bounties";
 import { apiFetch } from "@/config/apiClient";
